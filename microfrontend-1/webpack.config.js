@@ -10,7 +10,7 @@ module.exports = {
   mode: "development",
   devServer: {
     static: path.join(__dirname, "dist"),
-    port: 3000,
+    port: 3001,
     historyApiFallback: {
       index: "/public/index.html",
     },
@@ -29,10 +29,10 @@ module.exports = {
   plugins: [
     htmlPlugin,
     new ModuleFederationPlugin({
-      name: "ShellApplication",
+      name: "Microfrontend1",
       filename: "remoteEntry.js",
-      remotes: {
-        Microfrontend1: "Microfrontend1@http://localhost:3001/remoteEntry.js",
+      exposes: {
+        "./Button": "./src/Button",
       },
     }),
   ],
